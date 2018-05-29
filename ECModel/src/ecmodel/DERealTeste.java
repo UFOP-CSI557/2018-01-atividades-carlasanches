@@ -3,20 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package agreal;
+package ecmodel;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import metodo.DEReal;
+
+import metodo.ESReal;
+import problema.Problema;
+import problema.ProblemaDeJong;
+import solucao.Individuo;
 
 /**
  *
  * @author Carla
  */
-public class AGRealTeste {
+public class DERealTeste {
     
     public final static int REPETICOES = 30;
 
@@ -25,18 +28,18 @@ public class AGRealTeste {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-               
-        Problema problema = new Problema();
         
         //Par√¢metros propostos
         Double minimo = -5.12;
         Double maximo = 5.12;
-        Integer nVariaveis = 100;
-        Integer geracoes = 300;
+        Integer D = 100;
+        Integer gmax = 300;
         
-        //Par√¢metros n√£o modificados
-        Double pCrossover = 0.013;
-        Double pMutacao = 0.001;
+        Problema problema = new ProblemaDeJong(D);
+        
+        //Par√¢metros n√£o modificados        
+        Double F = 0.000035; //Taxa de mutaÁ„o
+        Double Cr = 1.5; //Taxa de crossover
         
         //Casos de teste
         //1 - Variar muta√ß√£o; 2 - variar crossover
@@ -48,11 +51,11 @@ public class AGRealTeste {
             
             for(int c = 0; c < casos.size(); c++){
                 
-                Integer tamanho = 300;
+                Integer Np = 3; //Tamanho da populaÁ„o
                 
-                AlgoritmoGenetico ag;
+                DEReal deReal;
                 
-                ArrayList<Individuo> result;
+                Individuo result;
                 
                 long startTime = System.currentTimeMillis();
                 
@@ -60,20 +63,21 @@ public class AGRealTeste {
                 
                 switch(teste){
                     case 1:
-                       tamanho = 450;
+                       Np = 100;
                     break;
                         
                     case 2: 
-                        tamanho = 600;
+                        Np = 200;
                     break;
                 }
                 
-                ag = new AlgoritmoGenetico(tamanho, pCrossover, pMutacao, geracoes, problema, minimo, maximo, nVariaveis);
-                result = ag.executar();
+                deReal = new DEReal(minimo, maximo, problema, gmax, D, Np, F, Cr);
+                result = deReal.executar();
                                 
                 long endTime = System.currentTimeMillis();
                 long totalTime = endTime - startTime;
-                System.out.println(nomes.get(teste-1) + ';' + "RESULTADO" + ';' + result.get(0).getFuncaoObjetivo() + ';' + "TEMPO" 
+                
+                System.out.println(nomes.get(teste-1) + ';' + "RESULTADO" + ';' + result.getFuncaoObjetivo() + ';' + "TEMPO" 
                                 + ';' + totalTime + ';' + "REPETICAO" + ';' + (i+1));
             }                         
         }

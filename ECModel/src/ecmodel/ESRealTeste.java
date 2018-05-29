@@ -3,20 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package agreal;
+package ecmodel;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+
+import metodo.ESReal;
+import problema.Problema;
+import problema.ProblemaDeJong;
+import solucao.Individuo;
 
 /**
  *
  * @author Carla
  */
-public class AGRealTeste {
+public class ESRealTeste {
     
     public final static int REPETICOES = 30;
 
@@ -25,8 +27,6 @@ public class AGRealTeste {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-               
-        Problema problema = new Problema();
         
         //Parâmetros propostos
         Double minimo = -5.12;
@@ -34,13 +34,17 @@ public class AGRealTeste {
         Integer nVariaveis = 100;
         Integer geracoes = 300;
         
+        Problema problema = new ProblemaDeJong(nVariaveis);
+        
         //Parâmetros não modificados
-        Double pCrossover = 0.013;
-        Double pMutacao = 0.001;
+        Double pMutacao = 0.065;
+        Integer lambda = 100; //numero de descendentes
         
         //Casos de teste
         //1 - Variar mutação; 2 - variar crossover
         ArrayList<String> nomes = new ArrayList<>(Arrays.asList("REAL1", "REAL2"));
+        
+        
         
         for(int i = 0; i < REPETICOES; i++){
             ArrayList<Integer> casos = new ArrayList<>(Arrays.asList(1, 2));
@@ -48,11 +52,11 @@ public class AGRealTeste {
             
             for(int c = 0; c < casos.size(); c++){
                 
-                Integer tamanho = 300;
+                Integer mu = 300; //Tamanho da popula��o
                 
-                AlgoritmoGenetico ag;
+                ESReal esReal;
                 
-                ArrayList<Individuo> result;
+                Individuo result;
                 
                 long startTime = System.currentTimeMillis();
                 
@@ -60,20 +64,21 @@ public class AGRealTeste {
                 
                 switch(teste){
                     case 1:
-                       tamanho = 450;
+                       mu = 50;
                     break;
                         
                     case 2: 
-                        tamanho = 600;
+                        mu = 100;
                     break;
                 }
                 
-                ag = new AlgoritmoGenetico(tamanho, pCrossover, pMutacao, geracoes, problema, minimo, maximo, nVariaveis);
-                result = ag.executar();
+                esReal = new ESReal(minimo, maximo, nVariaveis, problema, mu, lambda, geracoes, pMutacao);
+                result = esReal.executar();
                                 
                 long endTime = System.currentTimeMillis();
                 long totalTime = endTime - startTime;
-                System.out.println(nomes.get(teste-1) + ';' + "RESULTADO" + ';' + result.get(0).getFuncaoObjetivo() + ';' + "TEMPO" 
+                
+                System.out.println(nomes.get(teste-1) + ';' + "RESULTADO" + ';' + result.getFuncaoObjetivo() + ';' + "TEMPO" 
                                 + ';' + totalTime + ';' + "REPETICAO" + ';' + (i+1));
             }                         
         }

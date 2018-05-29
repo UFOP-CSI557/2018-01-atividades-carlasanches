@@ -1,0 +1,73 @@
+Objetivos:
+
+.Deixar o tamanho da população alto, mas o suficiente para ter bons resultados.
+.Deixar o crossover o mais baixo possível, mas o suficiente para não deixar o algoritmo lento.
+.Deixar a mutação mais baixa que o crossover.
+
+..Testes:
+...1. Testar para população de 600 e 300 indivíduos. Se não der muita diferença entre os dois, dobrar o valor da população maior. Se o valor aumentar ao invés de minimizar, tentar diminuir os valores de população, até chegar num valor bom. Ao chegar ao melhor valor possível da população, desde que o tamanho não esteja baixo demais, mexer nos valores de crossover e mutação.
+
+Teste 1: AGBinario - Pop1: 300 - Pop2: 600 - Resultado: diferença significante com Pop2 apresentando melhores resultados.
+Teste 2: AGBinario - Pop1: 600 - Pop2: 1200 - Resultado: diferença insignificante.
+Teste 3: AGBinario - Pop1: 600 - Pop2: 2400 - Resultado: diferença extremamente significante com Pop2 apresentando melhores resultados.
+
+Conclusão: Uma população muito grande apresenta melhores resultados, porém, como já esperado, o algoritmo fica mais lento. Limitando a média de execução em 100ms, trabalhar próximo a uma população de 600 seria o ideal nesse caso, pois o algoritmo executa dentro do tempo e consegue obter alguns valores ótimos.
+
+Teste de tempo 1: AGBinario - Pop1: 400 - Pop2: 600 - Resultado: diferença significante com Pop2 apresentando melhores resultados.
+Teste de tempo 2: AGBinario - Pop1: 500 - Pop2: 600 - Resultado: diferença insignificante, mas com Pop1 apresentando bons resultados.
+Teste de tempo 3: AGBinario - Pop1: 450 - Pop2: 600 - Resultado: diferença não muito significante, com Pop2 apresentando melhores resultados.
+
+Conclusão final: dentre as populações que executariam o algoritmo mais rápido, a que mais se aproximou de 600 sem perdas, foi a de 500. A diferença em tempo de execução não é muito significante, mas a média da população de 500 foi a menor.
+
+Configuração final:
+
+Crossover: 0.013
+Mutação: 0.001
+Tamanho: 500
+
+Teste 1: ESReal - Pop1: 300 - Pop2: 600 - Restante dos parâmetros idênticos aos do AGBinario
+
+Resultado 1: Valores e tempo de execução muito altos.
+Resultado 2: Diferença extremamente significante, em que a Pop1 obteve todos os resultados melhores do que a Pop2.
+
+Teste 2: ESReal - Pop1: 150 - Pop2: 300 - Resultado: diferença extremamente significante, com Pop1 apresentando melhores resultados.
+Teste 3: ESReal - Teste 1 X Teste 2 - Resultado: diferença extremamente significante, com Teste 1 apresentando melhores resultados.
+Teste 4: ESReal - Pop1: 600 - Pop2: 1200 - Resultado: diferença extremamente significante, com Pop1 apresentando melhores resultados.
+Teste 5: ESReal - Teste 1 X Teste 4 - Resultado: diferença extremamente significante, com Teste 4 apresentando melhores resultados.
+
+Conclusão: Valores muito altos no tamanho da população deixam o algoritmo mais lento. Também foi observado que um tamanho maior de descendentes por individuo trás melhores resultados. Aparentemente, um tamanho de população próximo a 600 também obteve melhores resultados.
+
+Teste 1: ESReal - lambda: 2400 - Pop 1: 100 - Pop2: 300 - Resultado: diferença extremamente sifnificante, com Pop1 apresentando melhores resultados. Porém, o tamanho elevado em lambda torna o algoritmo mais lento.
+
+Conclusão 2: Será necessário abaixar o valor de lambda, abaixando consequentemente o tamanho da população e fazendo com que se obtenha valores maiores. Uma solução seria aumentar a taxa de mutação.
+
+Teste 1: ESReal - lambda 100 - Pop1: 50 - Pop2 - 100 - Resultado: diferença extremamente significante, com Pop1 apresentando melhores resultados.
+
+Conclusão final: quanto maior o tamanho da população, mais alta a necessidade de descendentes e de taxas de mutação. Para manter a taxa de mutação a menor possível, foi necessário diminuir o tamanho da população. O algoritmo executou, para cada geração, em média 252.6 ms.
+
+Configuração final:
+lambda: 100
+mutação: 0.065
+mu: 50;
+
+
+Teste 1: DEReal - Pop1: 300 - Pop2: 600 - Restante dos parâmetros idênticos aos do AGBinario
+
+Resultado 1: Valores e tempo de execução muito altos.
+Resultado 2: Diferença muito significante, em que Pop2 apresentou melhores resultados.
+
+Teste 2: DEReal - Pop1: 600 - Pop2: 1200 - Resultado: diferença significante, com Pop2 apresentando melhores resultados.
+Teste 3: DEReal - Pop1: 600 - Pop2: 2400 - Resultado: diferença extremamente significante, com Pop2 apresentando melhores resultados.
+
+Conclusão: Quanto maior o número da população, melhor o resultado. Porém, os valores ainda se apresentam muito altos e o tempo de execução também. Testar valores de taxa de mutação e crossover.
+
+Conclusão 2: A taxa de crossover é a que tem mais influência nos resultados. Porém, com uma população muito alta, o algoritmo continua lento.
+
+Conclusão 3: Taxas de mutação muito altas atrapalham os resultados.
+
+Configuração final:
+crossover: 1.5
+mutação: 0.000035
+população: 100
+
+Conclusão final: Os valores obtidos foram mais vantajosos para uma população pequena, pois as taxas de mutação estavam elevadas, tentando minimizar a maior população.

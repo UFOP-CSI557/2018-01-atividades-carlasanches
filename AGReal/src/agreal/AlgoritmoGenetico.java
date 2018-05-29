@@ -138,10 +138,9 @@ public class AlgoritmoGenetico {
             //Imprimir a situação atual
             //System.out.println("Gen = " + g + "\tCusto = " + populacao.getIndividuos().get(0).getFuncaoObjetivo());
         }
-        
-        return populacao.getIndividuos();        
         //System.out.println("Melhor resultado: ");
-        //System.out.println(populacao.getIndividuos().get(0).getVariaveis());
+       // System.out.println(populacao.getIndividuos().get(0).getVariaveis());
+        return populacao.getIndividuos();                
     }
     
     private void crossoverUmPonto(Individuo ind1, Individuo ind2, Individuo descendente, int corte){
