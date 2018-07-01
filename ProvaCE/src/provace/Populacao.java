@@ -98,5 +98,14 @@ public class Populacao {
             
             this.getIndividuos().add(individuo);
         }
-    }        
+    }    
+
+    //Avaliar a população
+    public void avaliar(){
+        
+        for(Individuo individuo : this.getIndividuos()){
+            problema.calcularFuncaoObjetivo(individuo);
+        }
+        
+    }    
 }
