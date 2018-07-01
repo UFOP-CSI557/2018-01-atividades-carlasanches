@@ -6,6 +6,7 @@
 package provace;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  *
@@ -13,22 +14,17 @@ import java.util.ArrayList;
  */
 public class Populacao {
     
-    //Valor minimo
-    Double minimo;
-    //Valor máximo
-    Double maximo;
     
-    //Numero de variaveis
-    Integer nVar;
+    Double minimo; //Valor minimo    
+    Double maximo; //Valor 
+    Integer nVar; //Numero de variaveis 
+    Integer tamanho; //tamanho da população
+    ArrayList<Individuo> individuos; //Conjunto de individuos
+    Problema problema; //Problema
     
-    //tamanho da população
-    Integer tamanho;
-    
-    //Conjunto de individuos
-    ArrayList<Individuo> individuos;
-    
-    //Problema
-    Problema problema;
+    public Populacao(){
+        this.individuos = new ArrayList<>();
+    }
 
     public Populacao(Double minimo, Double maximo, Integer nVar, Integer tamanho, Problema problema) {
         this.minimo = minimo;
@@ -108,4 +104,8 @@ public class Populacao {
         }
         
     }    
+    
+    public Individuo getMelhorIndividuo() {
+        return Collections.min(this.individuos);
+    } 
 }

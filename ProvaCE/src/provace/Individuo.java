@@ -94,4 +94,12 @@ public class Individuo implements Comparable<Individuo>{
     public int compareTo(Individuo o) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+    @Override
+     public Individuo clone() {
+        Individuo individuo = new Individuo(this.getMinimo(),this.getMaximo(), this.getnVar());
+        individuo.setCromossomos(new ArrayList<>(this.getCromossomos()));
+        individuo.setFuncaoObjetivo(this.getFuncaoObjetivo());
+        return individuo;
+    }
 }
