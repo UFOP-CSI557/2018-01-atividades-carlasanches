@@ -25,6 +25,17 @@ public class AlgoritmoAGDE {
     Double maximo; //Maximo
     Integer nVariaveis;  //Variaveis     
     Problema problema; //Problema Schwefel
+
+    public AlgoritmoAGDE(Integer geracoes, Double pCrossover, Double pMutacao, Integer tamanho, Double minimo, Double maximo, Integer nVariaveis, Problema problema) {
+        this.geracoes = geracoes;
+        this.pCrossover = pCrossover;
+        this.pMutacao = pMutacao;
+        this.tamanho = tamanho;
+        this.minimo = minimo;
+        this.maximo = maximo;
+        this.nVariaveis = nVariaveis;
+        this.problema = problema;
+    }
     
     public Individuo getMelhorSolucao(Populacao populacao) {
         
@@ -41,7 +52,7 @@ public class AlgoritmoAGDE {
         
         //Criar a população
         populacao.criar();
-        
+                
         //Avaliar a população
         populacao.avaliar();
         
@@ -52,7 +63,6 @@ public class AlgoritmoAGDE {
         
         for(int g = 1; g <= this.geracoes; g++){
             for(int i = 0; i < this.tamanho; i++){
-                
                 //Crossover
                 if(rnd.nextDouble() <= this.pCrossover){
                     
@@ -63,7 +73,7 @@ public class AlgoritmoAGDE {
                     }while(r0 == i);
                     do{
                         r1 = rnd.nextInt(this.tamanho);
-                    }while(r1 == r0);
+                    }while(r1 == r0);                    
                     
                     Individuo progenitor1 = populacao.getIndividuos().get(r0);
                     Individuo progenitor2 = populacao.getIndividuos().get(r1);
@@ -80,15 +90,16 @@ public class AlgoritmoAGDE {
                     
                     Individuo melhorProgenitor = Collections.min(progenitores);
                     
+                    mutacao(melhorProgenitor, descendente);
+                    
                     problema.calcularFuncaoObjetivo(descendente);
                     
                     novaPopulacao.getIndividuos().add(descendente);
                 }
             }
             
-            //populacao para a geração seguinte
-            this.populacao.getIndividuos().clear();
-            this.populacao.getIndividuos().addAll(novaPopulacao.getIndividuos());
+            //populacao para a geração seguinte            
+            this.populacao.getIndividuos().addAll(novaPopulacao.getIndividuos());    
             
             Individuo melhorDaPopulacao = this.populacao.getMelhorIndividuo();
             
@@ -96,7 +107,16 @@ public class AlgoritmoAGDE {
                 melhorSolucao = melhorDaPopulacao.clone();
             }
             
-            System.out.println("G = " + g + "\t" + melhorSolucao.getFuncaoObjetivo());
+            this.populacao.getIndividuos().add(melhorSolucao);
+            
+            //Ordenar população
+            Collections.sort(populacao.getIndividuos());
+            
+            //Eliminar os demais individuos - criterio: tamanho da população
+            populacao.getIndividuos().subList(this.tamanho, populacao.getIndividuos().size()).clear();
+            novaPopulacao.getIndividuos().clear();
+                        
+            //System.out.println("G = " + g + "\t" + melhorSolucao.getFuncaoObjetivo());
         }
         
         return melhorSolucao;
