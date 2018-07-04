@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package agbinario;
+package passeiodocavalo;
 
-import agbinario.Individuo;
-import agbinario.Populacao;
-import agbinario.Problema;
+import passeiodocavalo.Individuo;
+import passeiodocavalo.Populacao;
+import passeiodocavalo.Problema;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package agbinario;
+package passeiodocavalo;
 
 import com.sun.org.apache.xml.internal.serialize.IndentPrinter;
 import java.util.ArrayList;

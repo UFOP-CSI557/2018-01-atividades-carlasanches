@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package agbinario;
+package passeiodocavalo;
 
 import java.util.Random;
 
@@ -11,7 +11,7 @@ import java.util.Random;
  *
  * @author Carla
  */
-public class AGBinario {
+public class PasseioDoCavalo {
 
     /**
      * @param args the command line arguments
