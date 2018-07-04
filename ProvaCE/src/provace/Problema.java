@@ -23,5 +23,6 @@ public class Problema {
         result = 418.9829 * individuo.getCromossomos().size() - somatorio;
         
         individuo.setFuncaoObjetivo(result);
+
     }
 }
