@@ -41,7 +41,7 @@ public class Individuo implements Comparable<Individuo>{
         this.maximo = maximo;
         this.nVar = nVar;
         this.cromossomos = new ArrayList<>();       
-        this.tabuleiro = new int[this.maximo][this.maximo];
+        this.tabuleiro = new int[this.maximo+1][this.maximo+1];
     }
 
     public ArrayList<Integer> getCromossomos() {
@@ -140,11 +140,9 @@ public class Individuo implements Comparable<Individuo>{
             }
             
             //guarda todas as posições selecionadas.
-            this.getDecodificacao().add(valor);
-            calcularMovimento();
-        //    real = (valor * (this.getMaximo() - this.getMinimo()) / (Math.pow(2, this.getPrecisao())- 1.0)) + this.getMinimo();
-            
-        }        
+            this.getDecodificacao().add(valor);            
+        //    real = (valor * (this.getMaximo() - this.getMinimo()) / (Math.pow(2, this.getPrecisao())- 1.0)) + this.getMinimo();            
+        } 
     }
     
     public void calcularMovimento(){
@@ -152,14 +150,17 @@ public class Individuo implements Comparable<Individuo>{
         
         int pos = 0;
                 
-        for(int i = 0; i < this.maximo; i++){
-            for(int j = 0; j < this.maximo; j++){
+        for(int i = 0; i <= this.maximo; i++){
+            for(int j = 0; j <= this.maximo; j++){
                 tabuleiro[i][j] = pos++;             
             }
         }  
         
         int xInicio = rnd.nextInt(this.maximo);
         int yInicio = rnd.nextInt(this.maximo);
+//        
+//        System.out.println("pos inicial: " + xInicio + "," + yInicio);
+//        System.out.println("conteúdo: " + tabuleiro[xInicio][yInicio]);
         
         this.getVariaveis().add(tabuleiro[xInicio][yInicio]);     
 
@@ -168,14 +169,18 @@ public class Individuo implements Comparable<Individuo>{
         int movimentoX[] = { 1,  2, 2, 1, -1, -2, -2, -1};
         int movimentoY[] = {-2, -1, 1, 2,  2,  1, -1, -2};
         
+        int proximoX = xInicio;
+        int proximoY = yInicio;
+        
         for(int i = 0; i < this.getDecodificacao().size(); i++){
-            int proximoX = movimentoX[this.getDecodificacao().get(i)];
-            int proximoY = movimentoY[this.getDecodificacao().get(i)];
             
-            if(proximoX > 0 && proximoY > 0 && proximoX < this.maximo && proximoY < this.maximo){
+            proximoX += movimentoX[this.getDecodificacao().get(i)];
+            proximoY += movimentoY[this.getDecodificacao().get(i)];
+            
+            if(proximoX >= this.minimo && proximoY >= this.minimo && proximoX <= this.maximo && proximoY <= this.maximo){
                 if(!this.getVariaveis().contains(tabuleiro[proximoX][proximoY])){
                     this.getVariaveis().add(tabuleiro[proximoX][proximoY]);
-                }
+                }                
             }
             else{
                 this.getVariaveis().add(-1);

@@ -16,11 +16,13 @@ public class Problema {
         Integer soma = 0;
         
         individuo.decodificar();
+        individuo.calcularMovimento();
                 
         for(Integer var : individuo.getVariaveis()){
-            if(var != -1){              
-                soma++;
+            if(var == -1){              
+                break;
             }
+            else soma++;
         }
         
         individuo.setFuncaoObjetivo(soma);        

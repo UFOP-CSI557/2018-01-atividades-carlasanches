@@ -118,7 +118,6 @@ public class AlgoritmoGenetico {
                     //Inserir na nova população
                     novaPopulacao.getIndividuos().add(desc1);
                     novaPopulacao.getIndividuos().add(desc2);
-                
                 }                
             }      
             
@@ -127,7 +126,7 @@ public class AlgoritmoGenetico {
             populacao.getIndividuos().addAll(novaPopulacao.getIndividuos());
             
             //Ordenar população
-            Collections.sort(populacao.getIndividuos());
+            Collections.sort(populacao.getIndividuos(), Collections.reverseOrder());
             
             //Eliminar os demais individuos - criterio: tamanho da população
             populacao.getIndividuos().subList(this.tamanho, populacao.getIndividuos().size()).clear();
@@ -137,11 +136,12 @@ public class AlgoritmoGenetico {
             System.out.println(populacao.getIndividuos().get(0).getVariaveis().size());
             
             //Imprimir a situação atual
-           // System.out.println("Gen = " + g + "\tCusto = " + populacao.getIndividuos().get(0).getFuncaoObjetivo());
+            System.out.println("Gen = " + g + "\tCusto = " + populacao.getIndividuos().get(0).getFuncaoObjetivo());
+            //System.out.println(populacao.getIndividuos().get(0).getVariaveis());
         }
         
-       // System.out.println("Melhor resultado: ");
-       // System.out.println(populacao.getIndividuos().get(0).getVariaveis());
+        System.out.println("Melhor resultado: ");
+        System.out.println(populacao.getIndividuos().get(0).getVariaveis());
         //System.out.println(populacao.getIndividuos().get(0).getCromossomos());
     }
     
