@@ -8,9 +8,6 @@ package passeiodocavalo;
 import passeiodocavalo.Individuo;
 import passeiodocavalo.Populacao;
 import passeiodocavalo.Problema;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.Collections;
 import java.util.Random;
 
@@ -35,13 +32,13 @@ public class AlgoritmoGenetico {
     //Precisão
     Integer precisao;
     //Minimo
-    Double minimo;
+    Integer minimo;
     //Maximo
-    Double maximo;
+    Integer maximo;
     //Variaveis
     Integer nVariaveis;
 
-    public AlgoritmoGenetico(Integer tamanho, Double pCrossover, Double pMutacao, Integer geracoes, Problema problema, Integer precisao, Double minimo, Double maximo, Integer nVariaveis) {
+    public AlgoritmoGenetico(Integer tamanho, Double pCrossover, Double pMutacao, Integer geracoes, Problema problema, Integer precisao, Integer minimo, Integer maximo, Integer nVariaveis) {
         this.tamanho = tamanho;
         this.pCrossover = pCrossover;
         this.pMutacao = pMutacao;
@@ -137,12 +134,14 @@ public class AlgoritmoGenetico {
             
             novaPopulacao.getIndividuos().clear();
             
+            System.out.println(populacao.getIndividuos().get(0).getVariaveis().size());
+            
             //Imprimir a situação atual
-            System.out.println("Gen = " + g + "\tCusto = " + populacao.getIndividuos().get(0).getFuncaoObjetivo());
+           // System.out.println("Gen = " + g + "\tCusto = " + populacao.getIndividuos().get(0).getFuncaoObjetivo());
         }
         
-        System.out.println("Melhor resultado: ");
-        System.out.println(populacao.getIndividuos().get(0).getVariaveis());
+       // System.out.println("Melhor resultado: ");
+       // System.out.println(populacao.getIndividuos().get(0).getVariaveis());
         //System.out.println(populacao.getIndividuos().get(0).getCromossomos());
     }
     

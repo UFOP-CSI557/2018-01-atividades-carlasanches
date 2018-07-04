@@ -17,9 +17,9 @@ public class Populacao {
     //Precisão - numero de bits por variavel
     Integer precisao;
     //Valor minimo
-    Double minimo;
+    Integer minimo;
     //Valor máximo
-    Double maximo;
+    Integer maximo;
     
     //Numero de variaveis
     Integer nVar;
@@ -33,7 +33,7 @@ public class Populacao {
     //Problema
     Problema problema;
 
-    public Populacao(Integer precisao, Double minimo, Double maximo, Integer nVar, Integer tamanho, Problema problema) {
+    public Populacao(Integer precisao, Integer minimo, Integer maximo, Integer nVar, Integer tamanho, Problema problema) {
         this.precisao = precisao;
         this.minimo = minimo;
         this.maximo = maximo;
@@ -47,11 +47,11 @@ public class Populacao {
         return precisao;
     }
 
-    public Double getMinimo() {
+    public Integer getMinimo() {
         return minimo;
     }
 
-    public Double getMaximo() {
+    public Integer getMaximo() {
         return maximo;
     }
 
@@ -71,11 +71,11 @@ public class Populacao {
         this.precisao = precisao;
     }
 
-    public void setMinimo(Double minimo) {
+    public void setMinimo(Integer minimo) {
         this.minimo = minimo;
     }
 
-    public void setMaximo(Double maximo) {
+    public void setMaximo(Integer maximo) {
         this.maximo = maximo;
     }
 

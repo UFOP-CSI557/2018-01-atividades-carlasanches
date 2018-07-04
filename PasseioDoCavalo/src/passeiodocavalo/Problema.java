@@ -18,7 +18,7 @@ public class Problema {
         individuo.decodificar();
                 
         for(Integer var : individuo.getVariaveis()){
-            if(var != -1){
+            if(var != -1){              
                 soma++;
             }
         }

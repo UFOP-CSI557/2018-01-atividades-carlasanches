@@ -41,8 +41,8 @@ public class PasseioDoCavalo {
         Integer precisao = 3;
         //5, 10, 25, 50, 100
         
-        Double minimo = 1.0;
-        Double maximo = 64.0;
+        Integer minimo = 0;
+        Integer maximo = 7;
         Integer nVariaveis = 64;
         
         AlgoritmoGenetico ag = new AlgoritmoGenetico(tamanho, pCrossover, pMutacao, geracoes, problema, precisao, minimo, maximo, nVariaveis);

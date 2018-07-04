@@ -15,7 +15,6 @@ import java.util.Random;
 public class Individuo implements Comparable<Individuo>{
     
     private int tabuleiro[][];
-    private int N; //dimensão do tabuleiro
     
     //Genotipo
     private ArrayList<Integer> cromossomos;
@@ -29,22 +28,20 @@ public class Individuo implements Comparable<Individuo>{
     //Precisão - numero de bits por variavel
     Integer precisao;
     //Valor minimo
-    Double minimo;
+    Integer minimo;
     //Valor máximo
-    Double maximo;
+    Integer maximo;
     
     //Numero de variaveis
     Integer nVar;
 
-    public Individuo(Integer precisao, Double minimo, Double maximo, Integer nVar) {
+    public Individuo(Integer precisao, Integer minimo, Integer maximo, Integer nVar) {
         this.precisao = precisao;
         this.minimo = minimo;
         this.maximo = maximo;
         this.nVar = nVar;
-        this.cromossomos = new ArrayList<>();
-        
-        N = (int) Math.sqrt(this.nVar);        
-        this.tabuleiro = new int[N][N];
+        this.cromossomos = new ArrayList<>();       
+        this.tabuleiro = new int[this.maximo][this.maximo];
     }
 
     public ArrayList<Integer> getCromossomos() {
@@ -87,19 +84,19 @@ public class Individuo implements Comparable<Individuo>{
         this.precisao = precisao;
     }
 
-    public Double getMinimo() {
+    public Integer getMinimo() {
         return minimo;
     }
 
-    public void setMinimo(Double minimo) {
+    public void setMinimo(Integer minimo) {
         this.minimo = minimo;
     }
 
-    public Double getMaximo() {
+    public Integer getMaximo() {
         return maximo;
     }
 
-    public void setMaximo(Double maximo) {
+    public void setMaximo(Integer maximo) {
         this.maximo = maximo;
     }
 
@@ -155,14 +152,14 @@ public class Individuo implements Comparable<Individuo>{
         
         int pos = 0;
                 
-        for(int i = 0; i < this.N; i++){
-            for(int j = 0; j < this.N; j++){
+        for(int i = 0; i < this.maximo; i++){
+            for(int j = 0; j < this.maximo; j++){
                 tabuleiro[i][j] = pos++;             
             }
         }  
         
-        int xInicio = rnd.nextInt(this.N);
-        int yInicio = rnd.nextInt(this.N);
+        int xInicio = rnd.nextInt(this.maximo);
+        int yInicio = rnd.nextInt(this.maximo);
         
         this.getVariaveis().add(tabuleiro[xInicio][yInicio]);     
 
@@ -175,7 +172,7 @@ public class Individuo implements Comparable<Individuo>{
             int proximoX = movimentoX[this.getDecodificacao().get(i)];
             int proximoY = movimentoY[this.getDecodificacao().get(i)];
             
-            if(proximoX > 0 && proximoY > 0 && proximoX < 64 && proximoY < 64){
+            if(proximoX > 0 && proximoY > 0 && proximoX < this.maximo && proximoY < this.maximo){
                 if(!this.getVariaveis().contains(tabuleiro[proximoX][proximoY])){
                     this.getVariaveis().add(tabuleiro[proximoX][proximoY]);
                 }
