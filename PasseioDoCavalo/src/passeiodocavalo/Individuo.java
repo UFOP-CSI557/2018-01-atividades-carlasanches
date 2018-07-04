@@ -15,6 +15,7 @@ import java.util.Random;
 public class Individuo implements Comparable<Individuo>{
     
     private int tabuleiro[][];
+    private int N; //dimensão do tabuleiro
     
     //Genotipo
     private ArrayList<Integer> cromossomos;
@@ -41,7 +42,9 @@ public class Individuo implements Comparable<Individuo>{
         this.maximo = maximo;
         this.nVar = nVar;
         this.cromossomos = new ArrayList<>();
-        this.tabuleiro = new int[this.nVar][this.nVar];
+        
+        N = (int) Math.sqrt(this.nVar);        
+        this.tabuleiro = new int[N][N];
     }
 
     public ArrayList<Integer> getCromossomos() {
@@ -152,14 +155,14 @@ public class Individuo implements Comparable<Individuo>{
         
         int pos = 0;
                 
-        for(int i = 0; i < this.nVar; i++){
-            for(int j = 0; j < this.nVar; j++){
+        for(int i = 0; i < this.N; i++){
+            for(int j = 0; j < this.N; j++){
                 tabuleiro[i][j] = pos++;             
             }
         }  
         
-        int xInicio = rnd.nextInt(this.nVar);
-        int yInicio = rnd.nextInt(this.nVar);
+        int xInicio = rnd.nextInt(this.N);
+        int yInicio = rnd.nextInt(this.N);
         
         this.getVariaveis().add(tabuleiro[xInicio][yInicio]);     
 
