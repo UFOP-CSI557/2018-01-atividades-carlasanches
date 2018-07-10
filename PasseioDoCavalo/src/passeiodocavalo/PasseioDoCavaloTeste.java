@@ -54,11 +54,11 @@ public class PasseioDoCavaloTeste {
                 
                 switch(teste){
                     case 1:
-                      // tamanho = 100;
+                       geracoes = 500;
                     break;
                         
                     case 2: 
-                       // tamanho = 100;
+                       geracoes = 900;
                     break;
                 }
                 

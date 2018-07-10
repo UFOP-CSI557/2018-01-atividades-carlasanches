@@ -28,7 +28,7 @@ public class PasseioDoCavalo {
         Integer tamanho = 50; //quantidade de indivíduos de cada população
         Double pCrossover = 0.8;
         Double pMutacao = 0.03;
-        Integer geracoes = 100;
+        Integer geracoes = 500;
         Integer precisao = 3;
         
         Integer minimo = 0;
