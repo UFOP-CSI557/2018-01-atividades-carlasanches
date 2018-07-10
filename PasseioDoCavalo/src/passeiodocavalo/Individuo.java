@@ -7,6 +7,7 @@ package passeiodocavalo;
 
 import java.util.ArrayList;
 import java.util.Random;
+import sun.util.locale.provider.HostLocaleProviderAdapterImpl;
 
 /**
  *
@@ -15,6 +16,7 @@ import java.util.Random;
 public class Individuo implements Comparable<Individuo>{
     
     private int tabuleiro[][];
+    private int tabuleiroSaida[][];
     
     //Genotipo
     private ArrayList<Integer> cromossomos;
@@ -42,6 +44,7 @@ public class Individuo implements Comparable<Individuo>{
         this.nVar = nVar;
         this.cromossomos = new ArrayList<>();       
         this.tabuleiro = new int[this.maximo+1][this.maximo+1];
+        this.tabuleiroSaida = new int[this.maximo+1][this.maximo+1];
     }
 
     public ArrayList<Integer> getCromossomos() {
@@ -107,6 +110,12 @@ public class Individuo implements Comparable<Individuo>{
     public void setnVar(Integer nVar) {
         this.nVar = nVar;
     }
+
+    public int[][] getTabuleiroSaida() {
+        return tabuleiroSaida;
+    }
+    
+    
     
     //Gerar o genotipo
     public void criar(){
@@ -146,7 +155,7 @@ public class Individuo implements Comparable<Individuo>{
     }
     
     public void calcularMovimento(){
-        Random rnd = new Random();
+      //  Random rnd = new Random();
         
         int pos = 0;
                 
@@ -154,25 +163,24 @@ public class Individuo implements Comparable<Individuo>{
             for(int j = 0; j <= this.maximo; j++){
                 tabuleiro[i][j] = pos++;             
             }
-        }  
+        } 
         
-        int xInicio = rnd.nextInt(this.maximo);
-        int yInicio = rnd.nextInt(this.maximo);
-//        
-//        System.out.println("pos inicial: " + xInicio + "," + yInicio);
-//        System.out.println("conteúdo: " + tabuleiro[xInicio][yInicio]);
-        
-        this.getVariaveis().add(tabuleiro[xInicio][yInicio]);     
-
-        //tentar "normalizar" para não passar do tabuleiro
-
+        for(int i = 0; i <= this.maximo; i++){
+            for(int j = 0; j <= this.maximo; j++){
+                tabuleiroSaida[i][j] = -1;             
+            }
+        }
+// 
         int movimentoX[] = { 1,  2, 2, 1, -1, -2, -2, -1};
         int movimentoY[] = {-2, -1, 1, 2,  2,  1, -1, -2};
         
-        int proximoX = xInicio;
-        int proximoY = yInicio;
+        int proximoX = 0;
+        int proximoY = this.getDecodificacao().get(0);
         
-        for(int i = 0; i < this.getDecodificacao().size(); i++){
+        this.getVariaveis().add(proximoY);
+        tabuleiroSaida[proximoX][proximoY] = 0;
+        
+        for(int i = 1; i < this.getDecodificacao().size(); i++){
             
             proximoX += movimentoX[this.getDecodificacao().get(i)];
             proximoY += movimentoY[this.getDecodificacao().get(i)];
@@ -180,7 +188,14 @@ public class Individuo implements Comparable<Individuo>{
             if(proximoX >= this.minimo && proximoY >= this.minimo && proximoX <= this.maximo && proximoY <= this.maximo){
                 if(!this.getVariaveis().contains(tabuleiro[proximoX][proximoY])){
                     this.getVariaveis().add(tabuleiro[proximoX][proximoY]);
-                }                
+                    
+                    if(!this.getVariaveis().contains(-1)){
+                        tabuleiroSaida[proximoX][proximoY] = i;
+                    }                    
+                }      
+                else{
+                    this.getVariaveis().add(-1);
+                }
             }
             else{
                 this.getVariaveis().add(-1);

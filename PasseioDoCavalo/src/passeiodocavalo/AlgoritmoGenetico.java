@@ -58,7 +58,7 @@ public class AlgoritmoGenetico {
         return melhorSolucao;
     }
     
-    public void executar(){
+    public Individuo executar(){
         populacao = new Populacao(precisao, minimo, maximo, nVariaveis, tamanho, problema);
         novaPopulacao = new Populacao(precisao, minimo, maximo, nVariaveis, tamanho, problema);
         
@@ -133,16 +133,36 @@ public class AlgoritmoGenetico {
             
             novaPopulacao.getIndividuos().clear();
             
-            System.out.println(populacao.getIndividuos().get(0).getVariaveis().size());
+          //  System.out.println(populacao.getIndividuos().get(0).getVariaveis().size());
             
             //Imprimir a situação atual
-            System.out.println("Gen = " + g + "\tCusto = " + populacao.getIndividuos().get(0).getFuncaoObjetivo());
-            //System.out.println(populacao.getIndividuos().get(0).getVariaveis());
+          //  System.out.println("Gen = " + g + "\tCusto = " + populacao.getIndividuos().get(0).getFuncaoObjetivo());
+           // System.out.println(populacao.getIndividuos().get(0).getVariaveis().size());
         }
-        
-        System.out.println("Melhor resultado: ");
-        System.out.println(populacao.getIndividuos().get(0).getVariaveis());
+       // System.out.println();
+      //  saída();
+        //System.out.println("Melhor resultado: ");
+      //  System.out.println();
+       // System.out.println(populacao.getIndividuos().get(0).getVariaveis());
+       // System.out.println(populacao.getIndividuos().get(0).getVariaveis().size());
         //System.out.println(populacao.getIndividuos().get(0).getCromossomos());
+        return populacao.getIndividuos().get(0);
+    }
+    
+    public void saída(){
+                
+        for(int i = 0; i < this.maximo+1; i++){
+            for(int j = 0; j < this.maximo+1; j++){
+                
+                int pos = populacao.getIndividuos().get(0).getTabuleiroSaida()[i][j];
+                
+                if(pos < 10 && pos > -1){
+                    System.out.print("  " + pos + " ");
+                }
+                else System.out.print(" " + pos + " ");
+            }
+            System.out.println();
+        }
     }
     
     private void crossoverUmPonto(Individuo ind1, Individuo ind2, Individuo descendente, int corte){
@@ -171,6 +191,5 @@ public class AlgoritmoGenetico {
                 individuo.getCromossomos().set(i, bit);
             }
         }
-    }
-    
+    }    
 }
