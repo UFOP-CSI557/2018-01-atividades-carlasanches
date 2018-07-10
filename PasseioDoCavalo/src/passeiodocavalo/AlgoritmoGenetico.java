@@ -136,15 +136,14 @@ public class AlgoritmoGenetico {
           //  System.out.println(populacao.getIndividuos().get(0).getVariaveis().size());
             
             //Imprimir a situação atual
-          //  System.out.println("Gen = " + g + "\tCusto = " + populacao.getIndividuos().get(0).getFuncaoObjetivo());
+            System.out.println("Gen = " + g + "\tCusto = " + populacao.getIndividuos().get(0).getFuncaoObjetivo());
            // System.out.println(populacao.getIndividuos().get(0).getVariaveis().size());
         }
-       // System.out.println();
-      //  saída();
+        System.out.println();
+        saída();
         //System.out.println("Melhor resultado: ");
-      //  System.out.println();
-       // System.out.println(populacao.getIndividuos().get(0).getVariaveis());
-       // System.out.println(populacao.getIndividuos().get(0).getVariaveis().size());
+        System.out.println();
+        System.out.println(populacao.getIndividuos().get(0).getVariaveis());
         //System.out.println(populacao.getIndividuos().get(0).getCromossomos());
         return populacao.getIndividuos().get(0);
     }
